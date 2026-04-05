@@ -1,0 +1,8 @@
+flask
+werkzeug
+nltk
+scikit-learn
+numpy
+scipy
+pdfplumber
+python-pptx

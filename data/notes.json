@@ -1,0 +1,296 @@
+[
+  {
+    "id": 1,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Definition of Information Retrieval",
+    "content": "Information Retrieval (IR) is the activity of obtaining information system resources that are relevant to an information need from a collection of those resources. IR deals with the representation, storage, organization of, and access to information items. The goal of IR is to provide users with relevant information based on their queries. IR systems are used in many settings such as search engines, digital libraries, and recommendation systems. The field combines elements from computer science, linguistics, and cognitive science to create effective retrieval mechanisms."
+  },
+  {
+    "id": 2,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Objectives of Information Retrieval",
+    "content": "The primary objectives of Information Retrieval include maximizing the retrieval of relevant documents, minimizing the retrieval of non-relevant documents, and providing ranked results based on relevance scores. IR systems aim to bridge the gap between user information needs and the actual documents stored in a collection. Secondary objectives include improving response time, scalability to large document collections, and supporting complex queries. Effective IR systems must balance precision and recall to satisfy diverse user needs."
+  },
+  {
+    "id": 3,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Functional Overview of IR Systems",
+    "content": "An IR system has several key functional components: document acquisition and preprocessing, indexing, query processing, matching and ranking, and result presentation. The document acquisition module collects raw text from various sources. Preprocessing involves tokenization, stopword removal, stemming, and lemmatization. The indexer creates data structures like inverted indexes for fast lookup. Query processing interprets user queries and transforms them into internal representations. The matching module computes similarity between queries and documents to produce a ranked list of results."
+  },
+  {
+    "id": 4,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "IR vs DBMS",
+    "content": "Information Retrieval and Database Management Systems differ fundamentally. DBMS handles structured data with exact match queries using SQL, while IR handles unstructured or semi-structured text with approximate matching. DBMS retrieves records that exactly satisfy query conditions whereas IR retrieves documents that are approximately relevant. IR deals with natural language and ambiguity, DBMS deals with precise schema and data types. IR uses ranking by relevance score, DBMS returns all matching records equally. IR focuses on text documents while DBMS focuses on structured records with defined fields."
+  },
+  {
+    "id": 5,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "IR Search Architecture",
+    "content": "The IR search architecture consists of an offline component and an online component. The offline component involves document collection, preprocessing pipeline, and index construction. The online component handles real-time query processing and result retrieval. Key components include the crawler or document feeder, text analyzer, indexer, query processor, ranking engine, and user interface. The architecture must support scalability for millions of documents and low latency for real-time search. Modern IR architectures use distributed systems and caching mechanisms to improve performance and handle large-scale collections."
+  },
+  {
+    "id": 6,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Data Retrieval vs Information Retrieval",
+    "content": "Data Retrieval involves retrieving specific data items from structured databases using exact queries, producing deterministic results. Information Retrieval involves finding relevant information from unstructured text collections using approximate matching. In data retrieval, the query semantics are well-defined; in IR, queries are often ambiguous and open to interpretation. Data retrieval returns exact matches or empty sets, while IR returns ranked lists of documents with relevance scores. Information retrieval must handle synonymy, polysemy, and natural language variation that data retrieval systems do not encounter."
+  },
+  {
+    "id": 7,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Applications of Information Retrieval",
+    "content": "Information Retrieval has wide applications including web search engines like Google and Bing, digital libraries, e-discovery in legal systems, medical literature search, enterprise document management, email filtering and spam detection, question answering systems, news aggregation, patent search, and recommendation systems. Each application domain requires specialized IR techniques. Medical IR needs to handle clinical terminology. Legal IR requires precise document retrieval. Web search must handle billions of documents with real-time indexing. All these applications share the core IR challenge of matching user needs to relevant content."
+  },
+  {
+    "id": 8,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 1",
+    "topic": "Issues in Information Retrieval",
+    "content": "Key issues in Information Retrieval include relevance determination which is subjective and context-dependent, scalability to very large document collections, vocabulary mismatch between query terms and document terms, handling of synonymy where different words have the same meaning, polysemy where the same word has different meanings, and multilingual retrieval. Other challenges include near-duplicate document detection, dealing with spam and low-quality content, real-time indexing of dynamic content, user intent understanding, and evaluation of retrieval effectiveness. These issues make IR a continuously evolving research field."
+  },
+  {
+    "id": 9,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Boolean Retrieval Model",
+    "content": "The Boolean Retrieval Model is the simplest IR model where queries are expressed as Boolean expressions of terms combined with AND, OR, and NOT operators. Documents are represented as sets of terms and retrieved only if they exactly satisfy the Boolean query condition. For example, the query 'information AND retrieval NOT database' retrieves documents containing both 'information' and 'retrieval' but not 'database'. Boolean retrieval is precise but inflexible because it does not rank results and treats all matching documents equally. It cannot handle partial matches or degree of relevance. Despite its limitations, Boolean retrieval is used in legal and patent search systems where precision is critical."
+  },
+  {
+    "id": 10,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Term Weighting in IR",
+    "content": "Term weighting assigns importance scores to terms in documents and queries to improve retrieval effectiveness. The most widely used weighting scheme is TF-IDF which combines Term Frequency and Inverse Document Frequency. Term Frequency (TF) measures how often a term appears in a document, capturing local term importance. Inverse Document Frequency (IDF) measures how rare a term is across all documents, penalizing common terms. The TF-IDF weight of a term t in document d is computed as TF(t,d) multiplied by IDF(t). IDF is computed as log(N/df) where N is the total number of documents and df is the document frequency. Higher TF-IDF scores indicate that a term is important in a specific document but rare overall."
+  },
+  {
+    "id": 11,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Vector Space Model",
+    "content": "The Vector Space Model (VSM) represents both documents and queries as vectors in a high-dimensional term space. Each dimension corresponds to a unique term in the vocabulary. The value in each dimension is the TF-IDF weight of that term. Documents and queries are represented as points in this space. Relevance is measured by the geometric angle between document and query vectors using cosine similarity. Cosine similarity is computed as the dot product of the vectors divided by the product of their magnitudes, giving a score between 0 and 1. The VSM allows partial matching and ranking by relevance score unlike the Boolean model. It is the foundation of most modern IR systems."
+  },
+  {
+    "id": 12,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Probabilistic Retrieval Model",
+    "content": "The Probabilistic Retrieval Model estimates the probability that a document is relevant to a query using probability theory. The Binary Independence Model (BIM) assumes terms are independently distributed and binary. BM25 (Best Match 25) is a highly effective probabilistic retrieval function that improves on BIM by incorporating term frequency saturation and document length normalization. BM25 score for a term is computed using parameters k1 and b that control term frequency scaling and length normalization. The probability ranking principle states that documents should be ranked by decreasing probability of relevance. Probabilistic models are theoretically well-founded and empirically effective in practice."
+  },
+  {
+    "id": 13,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Language Models for IR",
+    "content": "Language Models approach IR by estimating the probability of generating a query from a document's language model. Each document is modeled as a probability distribution over words. The query likelihood model ranks documents by the probability that the document language model would generate the query terms. To avoid zero probabilities for unseen terms, smoothing techniques like Jelinek-Mercer smoothing, Dirichlet smoothing, and Laplace smoothing are applied. Language models provide a principled probabilistic framework for IR and can naturally model query expansion and relevance feedback. Unigram language models treat each word independently while bigram models capture word dependencies."
+  },
+  {
+    "id": 14,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Neural Network Model for IR",
+    "content": "Neural Network Models for IR use deep learning to learn dense vector representations of documents and queries. Word embeddings like Word2Vec and GloVe capture semantic relationships between words. Dense retrieval models encode queries and documents into dense vectors and compute similarity in embedding space. BERT-based models like DPR (Dense Passage Retrieval) have achieved state-of-the-art results by fine-tuning transformer models for retrieval tasks. Neural models can capture semantic similarity beyond lexical matching, addressing vocabulary mismatch problems. However they require large training data and significant computational resources compared to traditional TF-IDF based methods."
+  },
+  {
+    "id": 15,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Retrieval Metrics: Precision and Recall",
+    "content": "Precision and Recall are the fundamental metrics for evaluating IR system effectiveness. Precision is the fraction of retrieved documents that are relevant, computed as the number of relevant retrieved documents divided by the total number of retrieved documents. Recall is the fraction of relevant documents that are retrieved, computed as the number of relevant retrieved documents divided by the total number of relevant documents in the collection. High precision means most retrieved documents are relevant. High recall means most relevant documents are retrieved. There is typically a trade-off between precision and recall: increasing recall often decreases precision and vice versa."
+  },
+  {
+    "id": 16,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "F-Measure and Evaluation",
+    "content": "The F-Measure combines Precision and Recall into a single evaluation metric. The F1 score is the harmonic mean of Precision and Recall computed as 2 times Precision times Recall divided by the sum of Precision and Recall. The harmonic mean penalizes extreme values, so a high F1 score requires both precision and recall to be high. The F-beta measure generalizes F1 by using a parameter beta to weight recall beta times more than precision. When beta equals 2 recall is weighted more, when beta equals 0.5 precision is weighted more. Mean Average Precision (MAP) averages precision values at each recall level across multiple queries to give an overall system performance measure."
+  },
+  {
+    "id": 17,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 2",
+    "topic": "Query Processing and Refinement",
+    "content": "Query Processing transforms a raw user query into an effective search representation. Steps include tokenization, stopword removal, stemming or lemmatization, and term weighting. Query expansion adds related terms to the original query to improve recall. Pseudo-relevance feedback automatically selects terms from top-ranked documents to expand the query, assuming the top results are relevant. Rocchio algorithm is a classic relevance feedback method that moves the query vector towards relevant documents and away from non-relevant ones. Query reformulation allows users to interactively refine their queries based on initial results. Query optimization improves efficiency by reordering query term evaluation."
+  },
+  {
+    "id": 18,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Inverted Index",
+    "content": "An inverted index is the core data structure used in most IR systems for efficient full-text search. It maps each unique term to a list of documents (postings list) that contain that term. The inverted index consists of a dictionary (vocabulary) of all terms and postings lists for each term. Each entry in the postings list contains the document ID and optionally the term frequency and positional information. For a query, the system looks up each query term in the dictionary and retrieves its postings list, then merges the lists to find matching documents. Inverted indexes enable fast retrieval with query times proportional to the output size rather than the collection size."
+  },
+  {
+    "id": 19,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Index Construction and Encoding",
+    "content": "Index construction involves processing documents, extracting terms, and building the inverted index data structure. The basic blocked sort-based indexing (BSBI) algorithm processes documents in blocks that fit in memory, sorts term-document pairs, and merges them. Single-pass in-memory indexing (SPIMI) directly builds inverted lists for each term without sorting. Encoding techniques compress the inverted index to reduce storage. Variable-length encoding like VB encoding stores gaps between document IDs rather than absolute IDs. Gamma encoding and delta encoding are other compression schemes. The dictionary itself can be compressed using techniques like front coding which exploits common prefixes in sorted vocabulary terms."
+  },
+  {
+    "id": 20,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Static and Dynamic Inverted Indices",
+    "content": "A static inverted index is built once over a fixed document collection and not updated. Static indexes are simpler and more compact but cannot handle new documents. A dynamic inverted index supports incremental updates as new documents are added. Strategies for dynamic indexing include logarithmic merging where multiple small indexes are periodically merged, and in-place updates. The main challenge is handling deletions and updates efficiently without rebuilding the entire index. Scalable indexing handles web-scale collections using distributed systems and MapReduce frameworks. Google's web index is an example of a massive distributed dynamic inverted index rebuilt continuously."
+  },
+  {
+    "id": 21,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "K-Nearest Neighbor Classification",
+    "content": "K-Nearest Neighbor (KNN) is a non-parametric classification algorithm used in IR for document classification. Given a new document to classify, KNN finds the K most similar training documents using a similarity measure like cosine similarity on TF-IDF vectors. The class label is determined by majority vote among the K nearest neighbors. A smaller K makes the model sensitive to noise while a larger K smooths decision boundaries. KNN is simple to implement and requires no training phase but is computationally expensive at prediction time because it compares the query document to all training documents. KNN is used for text categorization tasks like spam filtering and topic classification."
+  },
+  {
+    "id": 22,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Naive Bayes Classification",
+    "content": "Naive Bayes is a probabilistic classifier based on Bayes theorem with the naive assumption that all features (terms) are conditionally independent given the class label. For text classification, the Multinomial Naive Bayes model computes the probability of each class given the document's terms. The class with the highest posterior probability is assigned to the document. Training involves estimating the prior probability of each class and the conditional probability of each term given each class from training data. Laplace smoothing adds one to all term counts to handle unseen terms. Naive Bayes is computationally efficient, requires small amounts of training data, and works well in practice despite the independence assumption being violated."
+  },
+  {
+    "id": 23,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Support Vector Machines",
+    "content": "Support Vector Machines (SVM) are powerful supervised classifiers that find the maximum margin hyperplane separating different classes in feature space. For text classification, documents are represented as TF-IDF vectors and SVM finds the optimal boundary between classes. The support vectors are the training examples closest to the decision boundary that define it. The margin is the distance between the boundary and the nearest support vectors; SVM maximizes this margin for better generalization. Kernel functions like RBF and polynomial kernels handle non-linearly separable data. SVMs are particularly effective for high-dimensional text data because text feature spaces are typically very high dimensional with few training examples relative to dimensions."
+  },
+  {
+    "id": 24,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "K-Means Clustering",
+    "content": "K-Means clustering partitions a set of documents into K clusters by minimizing within-cluster variance. The algorithm starts by randomly selecting K cluster centroids. Each document is assigned to the nearest centroid using cosine similarity or Euclidean distance on TF-IDF vectors. Centroids are recalculated as the mean of all documents in each cluster. Assignment and centroid update steps repeat until convergence when assignments no longer change. The value of K must be specified in advance. K-Means is sensitive to the initial centroid selection and may converge to local optima. The algorithm is widely used for organizing document collections, topic detection, and search result clustering."
+  },
+  {
+    "id": 25,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Hierarchical Clustering",
+    "content": "Hierarchical Clustering builds a tree of clusters called a dendrogram that shows the hierarchical relationships between documents. Agglomerative hierarchical clustering starts with each document as its own cluster and successively merges the two closest clusters until one cluster remains. Linkage criteria determine how cluster distance is measured: single linkage uses the minimum distance, complete linkage uses the maximum, and average linkage uses the mean. Divisive hierarchical clustering starts with all documents in one cluster and recursively splits. The dendrogram allows choosing any number of clusters by cutting at different levels. It requires no specification of K in advance and reveals the natural grouping structure of the document collection."
+  },
+  {
+    "id": 26,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 3",
+    "topic": "Index Compression Techniques",
+    "content": "Index compression reduces the storage requirements of inverted indexes. Gap encoding stores the differences between consecutive document IDs in a postings list rather than absolute IDs, producing smaller numbers that compress better. Variable byte (VB) encoding uses 7 bits per byte for the value and 1 bit as a continuation flag, allowing variable-length integers. Elias gamma coding and delta coding are bit-level compression schemes. The dictionary can be compressed using blocking that stores terms in blocks with shared prefix information. Front coding exploits alphabetical ordering so consecutive terms share prefixes. Compression reduces disk I/O during retrieval making the system faster even though decompression is needed. Well-compressed indexes can fit in RAM improving cache performance."
+  },
+  {
+    "id": 27,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "Structure of the Web",
+    "content": "The World Wide Web has a bow-tie structure consisting of a large Strongly Connected Component (SCC) at the center, an IN component of pages that link to the SCC but are not linked back, an OUT component of pages linked from the SCC but not linking back, tendrils, tubes, and isolated components. The SCC contains the most important and well-connected pages. Web pages are connected by hyperlinks forming a directed graph. The web contains billions of pages across millions of domains. Dark web content not indexed by search engines is estimated to be much larger than the surface web. Understanding web structure is essential for designing effective crawlers and ranking algorithms."
+  },
+  {
+    "id": 28,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "Search Engine Architecture",
+    "content": "A modern search engine architecture consists of a web crawler that fetches pages, a document processor that extracts and normalizes text, an indexer that builds and updates the inverted index, a query processor that handles user queries, a ranking engine that orders results by relevance, and a user interface that presents results. Large search engines use distributed architectures with thousands of servers. The index is sharded across multiple machines for scalability. Caching of frequent queries improves response times. Search engines must handle billions of queries per day with sub-second response times. The architecture also includes spam detection, quality filtering, and freshness mechanisms to maintain index quality."
+  },
+  {
+    "id": 29,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "PageRank Algorithm",
+    "content": "PageRank is a link-based ranking algorithm developed by Larry Page and Sergey Brin at Google that measures the importance of web pages based on the number and quality of links pointing to them. The intuition is that important pages are linked to by other important pages. PageRank models a random surfer who follows links randomly. The PageRank of a page is the probability that the random surfer visits that page. The formula is PR(A) = (1-d)/N + d times the sum of PR(Ti)/C(Ti) for all pages Ti that link to A, where d is the damping factor (typically 0.85), N is total pages, and C(Ti) is the number of outgoing links from page Ti. PageRank is computed iteratively until convergence."
+  },
+  {
+    "id": 30,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "Web Crawlers",
+    "content": "A web crawler (spider) is a program that systematically browses the web to download and index web pages. It starts with a seed list of URLs, downloads each page, extracts outgoing links, adds new URLs to the frontier queue, and repeats. Key challenges include handling billions of pages, avoiding crawler traps and infinite loops, respecting robots.txt exclusion rules, politeness policies to not overload servers, detecting duplicate and near-duplicate content, handling dynamic JavaScript-generated content, and prioritizing important pages for crawling. Focused crawlers target specific topics rather than crawling the entire web. Distributed crawlers use multiple machines to increase crawling speed. Incremental crawlers update existing indexes by re-crawling changed pages."
+  },
+  {
+    "id": 31,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "Search Engine Ranking and Optimization",
+    "content": "Search Engine Ranking combines multiple signals to order results. Static ranking scores are computed offline based on link structure (PageRank), domain authority, and content quality. Dynamic ranking scores are computed at query time based on query-document relevance using TF-IDF or BM25. The final ranking combines static and dynamic scores. Simple ranking functions include linear combination of term frequency components. Learning to rank (LTR) methods use machine learning to combine many ranking features automatically. Search Engine Optimization (SEO) involves techniques to improve a page's ranking in search results including quality content, relevant keywords, link building, page speed optimization, and mobile-friendly design."
+  },
+  {
+    "id": 32,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 4",
+    "topic": "Google Search Engine",
+    "content": "Google Search Engine is the world's most widely used search engine processing over 8 billion queries per day. Google uses a combination of PageRank for authority, BM25-like text matching for relevance, RankBrain (machine learning) for query understanding, BERT for natural language understanding, and hundreds of other signals. Google's crawling infrastructure downloads billions of pages regularly. The Knowledge Graph provides direct answers to factual queries. Featured snippets display brief answer excerpts directly in results. Google's index stores compressed representations of billions of web pages. The search quality rater guidelines describe what Google considers high-quality content. Google continuously updates its algorithm to improve relevance and combat spam."
+  },
+  {
+    "id": 33,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Natural Language Processing in IR",
+    "content": "Natural Language Processing (NLP) techniques are essential for effective Information Retrieval. NLP helps IR systems understand the structure and meaning of text beyond simple keyword matching. Key NLP tasks in IR include tokenization, sentence segmentation, part-of-speech tagging, named entity recognition, syntactic parsing, word sense disambiguation, coreference resolution, and semantic role labeling. These techniques help disambiguate query terms, identify key concepts, and understand query intent. NLP enables more sophisticated retrieval by moving beyond bag-of-words representations toward semantic understanding of text content and user queries."
+  },
+  {
+    "id": 34,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Tokenization",
+    "content": "Tokenization is the process of splitting a text string into individual tokens, typically words or sub-words. Simple tokenization splits on whitespace and punctuation. Word tokenization handles contractions, hyphenated words, and special characters. Sentence tokenization splits text into sentences. Tokenization must handle language-specific rules such as German compound words, Chinese and Japanese text without explicit word boundaries, and social media text with hashtags and mentions. NLTK's word_tokenize and sent_tokenize functions implement rule-based tokenization for English. Subword tokenization methods like BPE (Byte-Pair Encoding) split rare words into subword units, allowing models to handle unseen words by composing them from known subword pieces."
+  },
+  {
+    "id": 35,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Stemming",
+    "content": "Stemming reduces words to their root form by removing suffixes and prefixes using heuristic rules. The Porter Stemmer is the most widely used English stemmer, applying a series of rules to strip suffixes. For example, 'running' becomes 'run', 'studies' becomes 'studi', and 'computational' becomes 'comput'. Stemming improves recall by matching different inflectional forms of a word but may reduce precision because it can over-stem by conflating words with different meanings. The Lovins stemmer and Snowball stemmers are other options. Stemming is faster than lemmatization because it does not require a lexical database. It is particularly useful for languages with rich morphology where many word forms share the same root."
+  },
+  {
+    "id": 36,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Lemmatization",
+    "content": "Lemmatization reduces words to their canonical dictionary form called the lemma using vocabulary and morphological analysis. Unlike stemming, lemmatization produces valid words: 'running' becomes 'run', 'better' becomes 'good', and 'mice' becomes 'mouse'. WordNet-based lemmatization uses the WordNet lexical database to look up the base form. NLTK's WordNetLemmatizer requires the part-of-speech tag to determine the correct lemma. For example, 'meeting' as a noun returns 'meeting' but as a verb returns 'meet'. Lemmatization is more accurate than stemming but requires more computational resources and a lexical resource. It is preferred when grammatical correctness matters and when over-stemming would cause problems."
+  },
+  {
+    "id": 37,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Stopword Removal",
+    "content": "Stopwords are common words that occur frequently in text but carry little semantic meaning for retrieval purposes. Examples include 'the', 'is', 'at', 'which', 'on', 'a', 'an', 'in', 'of', 'and', 'or', 'but'. Removing stopwords reduces the size of the index significantly and improves retrieval efficiency without much loss in effectiveness. NLTK provides a standard list of English stopwords. Custom stopword lists can be created for domain-specific applications. However, some queries like 'to be or not to be' require stopwords to preserve meaning, so phrase queries need careful stopword handling. In modern neural IR systems, stopwords may be less critical because the model can learn their relative importance."
+  },
+  {
+    "id": 38,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "N-gram Language Models",
+    "content": "N-gram models estimate the probability of a word given the previous N-1 words. A unigram model assumes each word is independent, bigram models condition on one previous word, and trigram models condition on two previous words. N-gram probabilities are estimated from corpus counts with smoothing to handle unseen N-grams. In IR, n-gram language models are used for document scoring, query likelihood estimation, and query expansion. Character n-grams are used for approximate string matching, spell correction, and language identification. Bigram and trigram models capture local word order and phrase patterns that unigram bag-of-words models miss. N-gram features are also used in text classification and spam detection."
+  },
+  {
+    "id": 39,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Document as a Vector",
+    "content": "Representing documents as vectors is a fundamental technique in IR enabling mathematical operations on text. In the bag-of-words model, each document is represented as a vector where each dimension corresponds to a vocabulary term and the value is the TF-IDF weight of that term. The vocabulary may have tens of thousands of dimensions making the vectors very sparse with most values being zero. Document vectors allow computing cosine similarity between documents and queries. Principal Component Analysis (PCA) and Latent Semantic Analysis (LSA) reduce the dimensionality of document vectors while preserving semantic relationships. Dense document representations from neural models like Doc2Vec and sentence transformers capture richer semantic information than sparse TF-IDF vectors."
+  },
+  {
+    "id": 40,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Recommendation Systems",
+    "content": "Recommendation Systems suggest items to users based on their interests and past behavior. Content-based filtering recommends items similar to those the user liked before, based on item features. Collaborative filtering recommends items liked by similar users, without needing item features. User-based collaborative filtering finds users with similar tastes; item-based collaborative filtering finds items with similar rating patterns. Matrix factorization methods like SVD decompose the user-item rating matrix to find latent factors. Hybrid recommenders combine content-based and collaborative approaches. In IR, recommendation systems suggest relevant documents, queries, or search results based on user history and item similarity."
+  },
+  {
+    "id": 41,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Sentiment Analysis",
+    "content": "Sentiment Analysis (opinion mining) uses NLP and IR techniques to identify and extract subjective information from text. It classifies text as positive, negative, or neutral sentiment at the document, sentence, or aspect level. Lexicon-based approaches use sentiment dictionaries like SentiWordNet to score text. Machine learning approaches train classifiers on labeled sentiment datasets. Aspect-based sentiment analysis identifies sentiment towards specific attributes of a product or service. In IR, sentiment analysis helps rank reviews, filter feedback, and understand user opinions about retrieved content. Applications include social media monitoring, product review analysis, customer feedback processing, and reputation management systems."
+  },
+  {
+    "id": 42,
+    "subject": "Information Retrieval Techniques",
+    "unit": "Unit 5",
+    "topic": "Document Scoring Methods",
+    "content": "Document scoring assigns a relevance score to each document for a given query. TF-IDF scoring computes the sum of TF-IDF weights of matching query terms. BM25 scoring improves on TF-IDF by adding term frequency saturation controlled by parameter k1 and document length normalization controlled by parameter b. Language model scoring computes the probability that the document language model generates the query. Neural scoring uses dense vectors to compute dot-product or cosine similarity. Proximity scoring gives higher scores to documents where query terms appear close together. Field-weighted scoring gives different weights to terms appearing in title, abstract, or body. Learning to rank combines multiple scoring signals using machine learning."
+  }
+]

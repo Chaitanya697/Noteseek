@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoteSeek — IRT Search Engine</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">N</div>
+      <div class="logo-text">NoteSeek</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Search</div>
+      <button class="nav-item active" onclick="showTab('search')" id="nav-search">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+          <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        VSM / BM25 Search
+      </button>
+      <button class="nav-item" onclick="showTab('boolean')" id="nav-boolean">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+          <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+          <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+          <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" />
+        </svg>
+        Boolean Model
+      </button>
+      <button class="nav-item" onclick="showTab('lm')" id="nav-lm">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        </svg>
+        Language Model
+      </button>
+
+      <div class="nav-section-label">Analyse</div>
+      <button class="nav-item" onclick="showTab('classify')" id="nav-classify">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 10h16M4 14h10M4 18h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Classify Text
+      </button>
+      <button class="nav-item" onclick="showTab('cluster')" id="nav-cluster">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <circle cx="12" cy="5" r="2" stroke="currentColor" stroke-width="2" />
+          <circle cx="5" cy="19" r="2" stroke="currentColor" stroke-width="2" />
+          <circle cx="19" cy="19" r="2" stroke="currentColor" stroke-width="2" />
+          <path d="M12 7v4M12 11l-5 6M12 11l5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Cluster Notes
+      </button>
+      <button class="nav-item" onclick="showTab('evaluate')" id="nav-evaluate">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Evaluate (P/R/F1)
+      </button>
+
+      <div class="nav-section-label">Explore</div>
+      <button class="nav-item" onclick="showTab('upload')" id="nav-upload">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" />
+          <polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        Upload Notes
+      </button>
+      <button class="nav-item" onclick="showTab('recommend')" id="nav-recommend">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        </svg>
+        Recommend
+      </button>
+      <button class="nav-item" onclick="showTab('notes')" id="nav-notes">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" />
+          <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" />
+        </svg>
+        All Notes
+      </button>
+    </nav>
+
+    <div class="sidebar-stats" id="sidebar-stats">
+      <div class="stat-item"><span class="stat-label">Documents</span><span class="stat-val" id="stat-docs">—</span>
+      </div>
+      <div class="stat-item"><span class="stat-label">Vocabulary</span><span class="stat-val" id="stat-vocab">—</span>
+      </div>
+      <div class="stat-item"><span class="stat-label">Postings</span><span class="stat-val" id="stat-postings">—</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="main" id="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()" title="Toggle sidebar">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="topbar-title">VSM / BM25 Search</div>
+      <div class="topbar-badge">IRT Project · 6th Sem</div>
+    </header>
+
+    <!-- ======= TAB: SEARCH ======= -->
+    <section class="tab-pane active" id="tab-search">
+      <div class="search-hero">
+        <h1 class="hero-title">Search Your Notes</h1>
+        <p class="hero-sub">Powered by TF-IDF · Vector Space Model · BM25</p>
+
+        <div class="search-bar-wrap">
+          <div class="search-bar">
+            <svg class="search-icon" width="20" height="20" fill="none" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+              <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <input type="text" id="search-input" placeholder="Type a doubt or topic... e.g. inverted index"
+              autocomplete="off" onkeydown="if(event.key==='Enter')doSearch()" />
+            <button class="search-btn" onclick="doSearch()">Search</button>
+          </div>
+
+          <div class="search-options">
+            <label class="option-label">Model:</label>
+            <label class="radio-pill"><input type="radio" name="model" value="vsm" checked> VSM</label>
+            <label class="radio-pill"><input type="radio" name="model" value="bm25"> BM25</label>
+            <label class="option-label" style="margin-left:12px">Results:</label>
+            <select id="top-k" class="select-pill">
+              <option value="5">Top 5</option>
+              <option value="10" selected>Top 10</option>
+              <option value="20">Top 20</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="suggestion-pills" id="suggestions">
+          <span class="sugg-label">Try:</span>
+          <button class="sugg-pill" onclick="fillSearch('tokenization stemming lemmatization')">tokenization
+            stemming</button>
+          <button class="sugg-pill" onclick="fillSearch('inverted index compression')">inverted index</button>
+          <button class="sugg-pill" onclick="fillSearch('PageRank web crawler')">PageRank crawler</button>
+          <button class="sugg-pill" onclick="fillSearch('precision recall f-measure')">precision recall</button>
+          <button class="sugg-pill" onclick="fillSearch('recommendation system collaborative filtering')">recommender
+            systems</button>
+        </div>
+      </div>
+
+      <!-- Query Terms -->
+      <div class="query-terms-bar" id="query-terms-bar" style="display:none">
+        <span class="qt-label">Query terms:</span>
+        <div id="query-terms-list"></div>
+      </div>
+
+      <!-- Results -->
+      <div id="search-results-area"></div>
+
+      <!-- Recommendations -->
+      <div id="search-recommendations" class="rec-section" style="display:none">
+        <div class="rec-header">Related Notes You Might Like</div>
+        <div id="rec-list"></div>
+      </div>
+    </section>
+
+    <!-- ======= TAB: BOOLEAN ======= -->
+    <section class="tab-pane" id="tab-boolean">
+      <div class="tab-header">
+        <h2>Boolean Retrieval Model</h2>
+        <p class="tab-desc">Use <code>AND</code>, <code>OR</code>, <code>NOT</code> operators. Example:
+          <code>indexing AND retrieval NOT clustering</code></p>
+      </div>
+      <div class="input-group">
+        <input type="text" id="bool-input" class="text-input"
+          placeholder="e.g. tokenization AND stemming NOT clustering"
+          onkeydown="if(event.key==='Enter')doBooleanSearch()" />
+        <button class="btn-primary" onclick="doBooleanSearch()">Search</button>
+      </div>
+      <div class="bool-examples">
+        <span class="ex-label">Examples:</span>
+        <button class="sugg-pill" onclick="fillBool('precision AND recall')">precision AND recall</button>
+        <button class="sugg-pill" onclick="fillBool('indexing OR clustering')">indexing OR clustering</button>
+        <button class="sugg-pill" onclick="fillBool('retrieval NOT database')">retrieval NOT database</button>
+      </div>
+      <div id="bool-explanation" class="explanation-box" style="display:none"></div>
+      <div id="bool-results-area"></div>
+    </section>
+
+    <!-- ======= TAB: LANGUAGE MODEL ======= -->
+    <section class="tab-pane" id="tab-lm">
+      <div class="tab-header">
+        <h2>Language Model Retrieval</h2>
+        <p class="tab-desc">Ranks documents by query likelihood P(query | document). Supports Jelinek-Mercer, Laplace,
+          and Dirichlet smoothing.</p>
+      </div>
+      <div class="input-group">
+        <input type="text" id="lm-input" class="text-input" placeholder="e.g. n-gram language model smoothing"
+          onkeydown="if(event.key==='Enter')doLMSearch()" />
+        <select id="lm-smoothing" class="select-pill" style="width:200px">
+          <option value="jelinek_mercer">Jelinek-Mercer</option>
+          <option value="laplace">Laplace (Add-1)</option>
+          <option value="dirichlet">Dirichlet</option>
+        </select>
+        <button class="btn-primary" onclick="doLMSearch()">Search</button>
+      </div>
+      <div id="lm-results-area"></div>
+    </section>
+
+    <!-- ======= TAB: CLASSIFY ======= -->
+    <section class="tab-pane" id="tab-classify">
+      <div class="tab-header">
+        <h2>Text Classification</h2>
+        <p class="tab-desc">Paste any text and predict which IRT Unit it belongs to using KNN, Naive Bayes, and SVM.</p>
+      </div>
+      <textarea id="classify-input" class="textarea-input" rows="5"
+        placeholder="Paste a text snippet here to classify it into a Unit..."></textarea>
+      <div class="input-group" style="margin-top:10px">
+        <select id="classify-method" class="select-pill" style="width:200px">
+          <option value="all">All Models (Vote)</option>
+          <option value="nb">Naive Bayes only</option>
+          <option value="svm">SVM only</option>
+          <option value="knn">KNN only</option>
+        </select>
+        <button class="btn-primary" onclick="doClassify()">Classify</button>
+      </div>
+      <div id="classify-results" style="margin-top:20px"></div>
+    </section>
+
+    <!-- ======= TAB: CLUSTER ======= -->
+    <section class="tab-pane" id="tab-cluster">
+      <div class="tab-header">
+        <h2>Document Clustering</h2>
+        <p class="tab-desc">Groups notes by topic similarity using K-Means and Hierarchical clustering.</p>
+      </div>
+      <div class="input-group">
+        <label class="option-label">Algorithm:</label>
+        <label class="radio-pill"><input type="radio" name="cluster-method" value="kmeans" checked> K-Means</label>
+        <label class="radio-pill"><input type="radio" name="cluster-method" value="hierarchical"> Hierarchical</label>
+        <label class="option-label" style="margin-left:12px">K =</label>
+        <select id="cluster-k" class="select-pill">
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5</option>
+          <option value="6">6</option>
+        </select>
+        <button class="btn-primary" onclick="doCluster()">Run Clustering</button>
+      </div>
+      <div id="cluster-results" style="margin-top:20px"></div>
+    </section>
+
+    <!-- ======= TAB: EVALUATE ======= -->
+    <section class="tab-pane" id="tab-evaluate">
+      <div class="tab-header">
+        <h2>IR Evaluation Metrics</h2>
+        <p class="tab-desc">Computes Precision, Recall, F1, F2, MAP, NDCG for any query. Top 3 results are auto-marked
+          relevant for demo.</p>
+      </div>
+      <div class="input-group">
+        <input type="text" id="eval-input" class="text-input" placeholder="e.g. vector space model cosine similarity"
+          onkeydown="if(event.key==='Enter')doEvaluate()" />
+        <button class="btn-primary" onclick="doEvaluate()">Evaluate</button>
+      </div>
+      <div id="eval-results" style="margin-top:20px"></div>
+    </section>
+
+    <!-- ======= TAB: UPLOAD ======= -->
+    <section class="tab-pane" id="tab-upload">
+      <div class="tab-header">
+        <h2>Upload Your Notes</h2>
+        <p class="tab-desc">Upload a <strong>PDF</strong> or <strong>PPTX</strong> file — NoteSeek will extract text,
+          detect topics, classify into IRT units, and make everything searchable instantly.</p>
+      </div>
+
+      <!-- Drop Zone -->
+      <div class="drop-zone" id="drop-zone" onclick="$('file-input').click()"
+        ondragover="event.preventDefault();this.classList.add('dragover')"
+        ondragleave="this.classList.remove('dragover')" ondrop="handleDrop(event)">
+        <div class="drop-icon">
+          <svg width="40" height="40" fill="none" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" />
+            <polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="drop-title">Drag & drop your file here</div>
+        <div class="drop-sub">or click to browse</div>
+        <div class="drop-types">PDF &nbsp;·&nbsp; PPTX &nbsp;·&nbsp; Max 32 MB</div>
+        <input type="file" id="file-input" accept=".pdf,.pptx,.ppt" style="display:none"
+          onchange="handleFileSelect(this)" />
+      </div>
+
+      <!-- Subject Label -->
+      <div class="input-group" style="margin-top:16px">
+        <label style="font-size:13px;color:var(--text-3);white-space:nowrap">Subject label:</label>
+        <input type="text" id="upload-subject" class="text-input" placeholder="e.g. IRT Unit 3 Notes, DSA Slides..."
+          style="max-width:400px" />
+        <button class="btn-primary" id="upload-btn" onclick="doUpload()" disabled>Upload & Index</button>
+      </div>
+
+      <!-- Selected File Preview -->
+      <div id="file-preview" style="display:none" class="file-preview-box">
+        <div class="file-preview-icon" id="file-icon">📄</div>
+        <div>
+          <div class="file-preview-name" id="file-name-display">—</div>
+          <div class="file-preview-size" id="file-size-display">—</div>
+        </div>
+        <button class="remove-file-btn" onclick="clearFile()" title="Remove file">✕</button>
+      </div>
+
+      <!-- Upload Progress -->
+      <div id="upload-progress" style="display:none" class="upload-progress">
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="prog-fill"></div>
+        </div>
+        <div class="progress-label" id="prog-label">Extracting text...</div>
+      </div>
+
+      <!-- Upload Results -->
+      <div id="upload-results" style="margin-top:24px"></div>
+
+      <!-- Previously Uploaded Docs -->
+      <div id="uploaded-history" style="margin-top:28px"></div>
+    </section>
+
+    <!-- ======= TAB: RECOMMEND ======= -->
+    <section class="tab-pane" id="tab-recommend">
+      <div class="tab-header">
+        <h2>Recommendation System</h2>
+        <p class="tab-desc">Recommends related notes using Content-Based, Collaborative, and Hybrid filtering.</p>
+      </div>
+      <div class="input-group">
+        <input type="text" id="rec-input" class="text-input"
+          placeholder="e.g. machine learning classification clustering" />
+        <select id="rec-mode" class="select-pill" style="width:200px">
+          <option value="content">Content-Based</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="collaborative">Collaborative</option>
+        </select>
+        <button class="btn-primary" onclick="doRecommend()">Recommend</button>
+      </div>
+      <div id="rec-results" style="margin-top:20px"></div>
+    </section>
+
+    <!-- ======= TAB: ALL NOTES ======= -->
+    <section class="tab-pane" id="tab-notes">
+      <div class="tab-header">
+        <h2>All Notes</h2>
+        <p class="tab-desc">Browse all indexed lecture notes in the NoteSeek database.</p>
+      </div>
+      <div class="unit-filter" id="unit-filter"></div>
+      <div id="all-notes-list"></div>
+    </section>
+
+  </main>
+
+  <!-- ===================== NOTE MODAL ===================== -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===================== LOADING SPINNER ===================== -->
+  <div class="spinner-overlay" id="spinner" style="display:none">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+
+</html>
